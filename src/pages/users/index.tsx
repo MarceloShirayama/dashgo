@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Header } from "src/components/Header";
+import Pagination from "src/components/Pagination";
 import { Sidebar } from "src/components/Sidebar";
 
 export default function UserList() {
@@ -156,6 +157,7 @@ export default function UserList() {
               </Tr>
             </Tbody>
           </Table>
+          <Pagination />
         </Box>
       </Flex>
     </Box>
