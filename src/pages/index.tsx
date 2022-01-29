@@ -48,8 +48,8 @@ export default function Home() {
                 message: "E-mail inválido",
               },
             })}
+            error={errors?.email}
           />
-          <p style={{ color: "#FF0000" }}>{errors.email?.message}</p>
           <Input
             name="password"
             type="password"
@@ -61,8 +61,8 @@ export default function Home() {
                 message: "A senha deve ter no mínimo de 8 caracteres",
               },
             })}
+            error={errors?.password}
           />
-          <p style={{ color: "red" }}>{errors.password?.message}</p>
         </Stack>
         <Button
           type="submit"
