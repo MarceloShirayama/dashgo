@@ -3,7 +3,12 @@ import { Input } from "src/components/Form/Input";
 
 export default function Home() {
   return (
-    <Flex w="100vw" h="100vh" alignItems="center" justifyContent="center">
+    <Flex
+      width="100vw"
+      height="100vh"
+      alignItems="center"
+      justifyContent="center"
+    >
       <Flex
         as="form"
         width="100%"
