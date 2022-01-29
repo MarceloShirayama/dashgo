@@ -8,15 +8,16 @@ export function Profile({ showProfileData = true }: ProfileProps) {
   return (
     <Flex alignItems={"center"}>
       {showProfileData && (
-        <Box marginRight={"4"} textAlign={"right"}>
+        <Box marginRight={["2", "4"]} textAlign={"right"}>
           <Text>Marcelo</Text>
-          <Text color={"gray.300"} fontSize={"small"}>
+          <Text color={"gray.300"} fontSize={"sm"}>
             marcelo@mail.com
           </Text>
         </Box>
       )}
       <Avatar
-        size="md"
+        size={showProfileData ? "lg" : "md"}
+        marginRight={showProfileData ? "" : "2"}
         name="Marcelo Shirayama"
         src="https://avatars.githubusercontent.com/u/57074646?v=4"
       />
