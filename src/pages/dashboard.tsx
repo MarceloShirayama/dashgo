@@ -59,27 +59,34 @@ export default function Dashboard() {
   return (
     <Flex direction={"column"} height={"100vh"}>
       <Header />
-      <Flex width={"100%"} mx={"auto"} my={"6"} paddingX={"6"} maxWidth={1480}>
+      <Flex
+        width={"100%"}
+        mx={"auto"}
+        my={["4", "6"]}
+        paddingX={["4", "6"]}
+        maxWidth={1480}
+        minWidth={"480"}
+      >
         <Sidebar />
         <SimpleGrid
           flex={"1"}
-          gap={"4"}
+          gap={["2", "4"]}
           minChildWidth={"320px"}
           alignItems={"flex-start"}
         >
           <Box
-            padding={"8"}
+            padding={["6", "8"]}
             bg={"gray.800"}
-            borderRadius={"8"}
-            paddingBottom={"4"}
+            borderRadius={["6", "8"]}
+            paddingBottom={["2", "4"]}
           >
-            <Text fontSize={"lg"} marginBottom={"4"}>
+            <Text fontSize={"lg"} marginBottom={["2", "4"]}>
               Inscritos da semana
             </Text>
             <Chart type="area" height={160} options={options} series={series} />
           </Box>
-          <Box padding={"8"} bg={"gray.800"} borderRadius={"8"}>
-            <Text fontSize={"lg"} marginBottom={"4"}>
+          <Box padding={["6", "8"]} bg={"gray.800"} borderRadius={["6", "8"]}>
+            <Text fontSize={"lg"} marginBottom={["2", "4"]}>
               Taxa de abertura
             </Text>
             <Chart type="area" height={160} options={options} series={series} />
