@@ -14,11 +14,7 @@ const schema = yup.object({
     .string()
     .email("Deve ser um email válido!")
     .required("Email é obrigatório!"),
-  password: yup
-    .string()
-    .required("Senha é obrigatória!")
-    .min(8, "Senha deve ter no mínimo 8 caracteres!")
-    .max(20, "Senha deve ter no máximo 20 caracteres!"),
+  password: yup.string().required("Senha é obrigatória!"),
 });
 
 export default function Home() {
