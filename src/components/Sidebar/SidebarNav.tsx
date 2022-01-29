@@ -12,12 +12,12 @@ export function SidebarNav() {
   return (
     <Stack spacing={"12"} alignItems={"flex-start"}>
       <NavSection title="GERAL">
-        <NavLink title={"Dashboard"} icon={RiDashboardLine} />
-        <NavLink title={"Usuários"} icon={RiContactsLine} />
+        <NavLink title={"Dashboard"} icon={RiDashboardLine} href="/dashboard" />
+        <NavLink title={"Usuários"} icon={RiContactsLine} href="/users" />
       </NavSection>
       <NavSection title="AUTOMAÇÃO">
-        <NavLink title={"Formulário"} icon={RiInputMethodLine} />
-        <NavLink title={"Automação"} icon={RiGitMergeLine} />
+        <NavLink title={"Formulário"} icon={RiInputMethodLine} href="/forms" />
+        <NavLink title={"Automação"} icon={RiGitMergeLine} href="/automation" />
       </NavSection>
     </Stack>
   );
