@@ -26,7 +26,23 @@ export default function UserList() {
   const { data, isLoading, error } = useQuery("users", async () => {
     const response = await fetch("http://localhost:3000/api/users");
     const data = await response.json();
-    return data;
+    const users = data.users.map((user) => {
+      return {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        created_at: new Date(user.created_at).toLocaleString("pt-BR", {
+          timeZone: "America/Sao_Paulo",
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      };
+    });
+
+    return users;
   });
 
   const isWideVersion = useBreakpointValue({
@@ -77,6 +93,7 @@ export default function UserList() {
             </Flex>
           ) : (
             <>
+              {/* TODO: fix responsiveness on mobile  */}
               <Table colorScheme={"whiteAlpha"}>
                 <Thead>
                   <Tr>
@@ -93,122 +110,39 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  <Tr>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Checkbox colorScheme={"pink"} />
-                    </Td>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Box>
-                        <Text fontWeight={"bold"}>Marcelo Shirayama</Text>
-                        <Text fontSize={"small"} color={"gray.300"}>
-                          marcelo@mail.com
-                        </Text>
-                      </Box>
-                    </Td>
-                    {isWideVersion && (
-                      <Td paddingX={["4", "4", "6"]}>02 de Janeiro, 2022</Td>
-                    )}
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Button
-                        as="a"
-                        size={"sm"}
-                        fontSize={["small", "small", "sm"]}
-                        colorScheme={"purple"}
-                        leftIcon={
-                          <Icon as={RiPencilLine} fontSize={["14", "16"]} />
-                        }
-                      >
-                        Editar
-                      </Button>
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Checkbox colorScheme={"pink"} />
-                    </Td>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Box>
-                        <Text fontWeight={"bold"}>Marcelo Shirayama</Text>
-                        <Text fontSize={"small"} color={"gray.300"}>
-                          marcelo@mail.com
-                        </Text>
-                      </Box>
-                    </Td>
-                    {isWideVersion && (
-                      <Td paddingX={["4", "4", "6"]}>02 de Janeiro, 2022</Td>
-                    )}
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Button
-                        as="a"
-                        size={"sm"}
-                        fontSize={["small", "small", "sm"]}
-                        colorScheme={"purple"}
-                        leftIcon={
-                          <Icon as={RiPencilLine} fontSize={["14", "16"]} />
-                        }
-                      >
-                        Editar
-                      </Button>
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Checkbox colorScheme={"pink"} />
-                    </Td>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Box>
-                        <Text fontWeight={"bold"}>Marcelo Shirayama</Text>
-                        <Text fontSize={"small"} color={"gray.300"}>
-                          marcelo@mail.com
-                        </Text>
-                      </Box>
-                    </Td>
-                    {isWideVersion && (
-                      <Td paddingX={["4", "4", "6"]}>02 de Janeiro, 2022</Td>
-                    )}
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Button
-                        as="a"
-                        size={"sm"}
-                        fontSize={["small", "small", "sm"]}
-                        colorScheme={"purple"}
-                        leftIcon={
-                          <Icon as={RiPencilLine} fontSize={["14", "16"]} />
-                        }
-                      >
-                        Editar
-                      </Button>
-                    </Td>
-                  </Tr>
-                  <Tr>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Checkbox colorScheme={"pink"} />
-                    </Td>
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Box>
-                        <Text fontWeight={"bold"}>Marcelo Shirayama</Text>
-                        <Text fontSize={"small"} color={"gray.300"}>
-                          marcelo@mail.com
-                        </Text>
-                      </Box>
-                    </Td>
-                    {isWideVersion && (
-                      <Td paddingX={["4", "4", "6"]}>02 de Janeiro, 2022</Td>
-                    )}
-                    <Td paddingX={["4", "4", "6"]}>
-                      <Button
-                        as="a"
-                        size={"sm"}
-                        fontSize={["small", "small", "sm"]}
-                        colorScheme={"purple"}
-                        leftIcon={
-                          <Icon as={RiPencilLine} fontSize={["14", "16"]} />
-                        }
-                      >
-                        Editar
-                      </Button>
-                    </Td>
-                  </Tr>
+                  {data.map((user) => {
+                    return (
+                      <Tr key={user.id}>
+                        <Td paddingX={["4", "4", "6"]}>
+                          <Checkbox colorScheme={"pink"} />
+                        </Td>
+                        <Td paddingX={["4", "4", "6"]}>
+                          <Box>
+                            <Text fontWeight={"bold"}>{user.name}</Text>
+                            <Text fontSize={"small"} color={"gray.300"}>
+                              {user.email}
+                            </Text>
+                          </Box>
+                        </Td>
+                        {isWideVersion && (
+                          <Td paddingX={["4", "4", "6"]}>{user.created_at}</Td>
+                        )}
+                        <Td paddingX={["4", "4", "6"]}>
+                          <Button
+                            as="a"
+                            size={"sm"}
+                            fontSize={["small", "small", "sm"]}
+                            colorScheme={"purple"}
+                            leftIcon={
+                              <Icon as={RiPencilLine} fontSize={["14", "16"]} />
+                            }
+                          >
+                            Editar
+                          </Button>
+                        </Td>
+                      </Tr>
+                    );
+                  })}
                 </Tbody>
               </Table>
               <Pagination />
