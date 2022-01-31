@@ -8,7 +8,7 @@ import {
   DrawerOverlay,
 } from "@chakra-ui/react";
 import { useSidebarDrawer } from "src/context/SidebarDrawerContext";
-import useBreakpointValue from "src/hooks/useBreakpointValue";
+import useBreakpointValue from "src/services/hooks/useBreakpointValue";
 import { SidebarNav } from "./SidebarNav";
 
 export function Sidebar() {

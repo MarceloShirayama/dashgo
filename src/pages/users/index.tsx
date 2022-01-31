@@ -20,7 +20,7 @@ import { useQuery } from "react-query";
 import { Header } from "src/components/Header";
 import Pagination from "src/components/Pagination";
 import { Sidebar } from "src/components/Sidebar";
-import useBreakpointValue from "src/hooks/useBreakpointValue";
+import useBreakpointValue from "src/services/hooks/useBreakpointValue";
 import { api } from "src/services/api";
 import { User } from "src/types/user";
 
