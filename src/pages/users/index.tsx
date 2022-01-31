@@ -23,7 +23,7 @@ import { Sidebar } from "src/components/Sidebar";
 import useBreakpointValue from "src/hooks/useBreakpointValue";
 
 export default function UserList() {
-  const { data, isLoading, error } = useQuery(
+  const { data, isLoading, isFetching, error } = useQuery(
     "users",
     async () => {
       const response = await fetch("http://localhost:3000/api/users");
@@ -76,6 +76,9 @@ export default function UserList() {
           >
             <Heading size={"lg"} fontWeight={"normal"}>
               Usuários
+              {!isLoading && isFetching && (
+                <Spinner size={"sm"} color="gray.500" marginLeft={"4"} />
+              )}
             </Heading>
             <Link href={"/users/create"} passHref>
               <Button
