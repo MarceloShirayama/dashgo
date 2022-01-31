@@ -22,13 +22,14 @@ import Pagination from "src/components/Pagination";
 import { Sidebar } from "src/components/Sidebar";
 import useBreakpointValue from "src/hooks/useBreakpointValue";
 import { api } from "src/services/api";
+import { User } from "src/types/user";
 
 export default function UserList() {
   const { data, isLoading, isFetching, error } = useQuery(
     "users",
     async () => {
       const { data } = await api.get("users");
-      const users = data.users.map((user) => {
+      const users: User[] = data.users.map((user: User) => {
         return {
           id: user.id,
           name: user.name,
