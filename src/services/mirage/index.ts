@@ -1,10 +1,5 @@
 import { createServer, Factory, Model } from "miragejs";
-
-type User = {
-  name: string;
-  email: string;
-  created_at: string;
-};
+import { User } from "src/types/user";
 
 export function makeServer() {
   const server = createServer({
