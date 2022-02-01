@@ -1,8 +1,17 @@
-import { createServer, Factory, Model, Response } from "miragejs";
+import {
+  ActiveModelSerializer,
+  createServer,
+  Factory,
+  Model,
+  Response,
+} from "miragejs";
 import { User } from "src/types/user";
 
 export function makeServer() {
   const server = createServer({
+    serializers: {
+      application: ActiveModelSerializer,
+    },
     models: {
       user: Model.extend<Partial<User>>({}),
     },
@@ -22,7 +31,7 @@ export function makeServer() {
     },
 
     seeds(server) {
-      server.createList("user", 200);
+      server.createList("user", 30);
     },
 
     routes() {

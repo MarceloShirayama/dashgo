@@ -10,10 +10,14 @@ import {
 } from "@chakra-ui/react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useMutation } from "react-query";
 import { Input } from "src/components/Form/Input";
 import { Header } from "src/components/Header";
 import { Sidebar } from "src/components/Sidebar";
+import { api } from "src/services/api";
+import { queryClient } from "src/services/queryClient";
 import * as yup from "yup";
 
 type FormInputs = {
@@ -40,6 +44,22 @@ const schema = yup.object({
 });
 
 export default function CreateUser() {
+  const router = useRouter();
+
+  const createUser = useMutation(
+    async (user: FormInputs) => {
+      await api.post("/users", {
+        user: {
+          ...user,
+          created_at: new Date(),
+        },
+      });
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries("users"),
+    }
+  );
+
   const {
     register,
     handleSubmit,
@@ -49,8 +69,9 @@ export default function CreateUser() {
   });
 
   const handleCreateUser: SubmitHandler<FormInputs> = async (values) => {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(values);
+    await createUser.mutateAsync(values);
+
+    router.push("/users");
   };
 
   return (
